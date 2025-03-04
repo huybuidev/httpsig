@@ -12,6 +12,7 @@ import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/sha256"
+	"crypto/sha512"
 	"encoding/base64"
 	"fmt"
 	"io"
@@ -126,7 +127,7 @@ func signRsaPssSha512(pk *rsa.PrivateKey) sigHolder {
 	return sigHolder{
 		alg: "rsa-pss-sha512",
 		signer: func() sigImpl {
-			h := sha256.New()
+			h := sha512.New()
 
 			return sigImpl{
 				w: h,
